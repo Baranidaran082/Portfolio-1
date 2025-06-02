@@ -209,14 +209,14 @@ class ProductDetailPage {
         mainImage.src = this.product.image;
         mainImage.alt = this.product.name;
 
-        // Create thumbnails
-        const images = this.product.images || [this.product.image];
+        // // Create thumbnails
+        // const images = this.product.images || [this.product.image];
         
-        thumbnailContainer.innerHTML = images.map((image, index) => `
-            <div class="thumbnail ${index === 0 ? 'active' : ''}" data-image-index="${index}">
-                <img src="${image}" alt="${this.product.name} ${index + 1}">
-            </div>
-        `).join('');
+        // thumbnailContainer.innerHTML = images.map((image, index) => `
+        //     <div class="thumbnail ${index === 0 ? 'active' : ''}" data-image-index="${index}">
+        //         <img src="${image}" alt="${this.product.name} ${index + 1}">
+        //     </div>
+        // `).join('');
 
         // Add thumbnail click handlers
         thumbnailContainer.querySelectorAll('.thumbnail').forEach(thumb => {
