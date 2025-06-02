@@ -788,6 +788,21 @@ body {
     border-radius: var(--radius-lg);
     border: 2px solid var(--primary-blue);
 }
+@media (max-width: 768px) {
+  .content-block,
+  .content-block.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .content-block.reverse .text-content,
+  .content-block.reverse .image-content {
+    order: unset;
+  }
+
+  .image-content img {
+    height: auto; /* Allows image to scale naturally */
+  }
+}
 
 .values-section {
     margin-bottom: var(--spacing-2xl);
