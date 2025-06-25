@@ -121,89 +121,75 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateSkills);
     
     // Contact form validation
-    const contactForm = document.getElementById('contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form inputs
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const messageInput = document.getElementById('message');
-            
-            // Validate inputs
-            let isValid = true;
-            
-            // Name validation
-            if (!nameInput.value.trim()) {
-                showError(nameInput, 'Name is required');
-                isValid = false;
-            } else {
-                removeError(nameInput);
-            }
-            
-            // Email validation
-            if (!emailInput.value.trim()) {
-                showError(emailInput, 'Email is required');
-                isValid = false;
-            } else if (!isValidEmail(emailInput.value)) {
-                showError(emailInput, 'Please enter a valid email');
-                isValid = false;
-            } else {
-                removeError(emailInput);
-            }
-            
-            // Message validation
-            if (!messageInput.value.trim()) {
-                showError(messageInput, 'Message is required');
-                isValid = false;
-            } else {
-                removeError(messageInput);
-            }
-            
-            // If valid, submit the form (or simulate submission)
-            if (isValid) {
-                // Normally you would submit to a server here
-                // For demo purposes, we'll just show a success message
-                
-                // Reset the form
-                contactForm.reset();
-                
-                // Show success message
-                const formSuccess = document.createElement('div');
-                formSuccess.className = 'form-success';
-                formSuccess.textContent = 'Your message has been sent successfully!';
-                
-                contactForm.appendChild(formSuccess);
-                
-                // Remove success message after 5 seconds
-                setTimeout(() => {
-                    formSuccess.remove();
-                }, 5000);
-            }
-        });
-    }
-    
-    // Helper functions for form validation
-    function showError(input, message) {
-        const formGroup = input.parentElement;
-        const errorMessage = formGroup.querySelector('.error-message');
-        
-        formGroup.classList.add('error');
-        errorMessage.textContent = message;
-    }
-    
-    function removeError(input) {
-        const formGroup = input.parentElement;
-        
-        formGroup.classList.remove('error');
-    }
-    
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
+      const contactForm = document.getElementById("contact-form");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      // Prevent form from submitting immediately
+      e.preventDefault();
+
+      // Get form inputs
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const messageInput = document.getElementById("message");
+
+      let isValid = true;
+
+      // Name validation
+      if (!nameInput.value.trim()) {
+        showError(nameInput, "Name is required");
+        isValid = false;
+      } else {
+        removeError(nameInput);
+      }
+
+      // Email validation
+      if (!emailInput.value.trim()) {
+        showError(emailInput, "Email is required");
+        isValid = false;
+      } else if (!isValidEmail(emailInput.value)) {
+        showError(emailInput, "Please enter a valid email");
+        isValid = false;
+      } else {
+        removeError(emailInput);
+      }
+
+      // Message validation
+      if (!messageInput.value.trim()) {
+        showError(messageInput, "Message is required");
+        isValid = false;
+      } else {
+        removeError(messageInput);
+      }
+
+      // ✅ If everything is valid, submit the form
+      if (isValid) {
+        contactForm.submit(); // Let FormSubmit handle sending the message
+      }
+    });
+  }
+
+  // Helper functions
+  function showError(input, message) {
+    const formGroup = input.parentElement;
+    const errorMessage = formGroup.querySelector(".error-message");
+
+    formGroup.classList.add("error");
+    errorMessage.textContent = message;
+  }
+
+  function removeError(input) {
+    const formGroup = input.parentElement;
+    formGroup.classList.remove("error");
+
+    const errorMessage = formGroup.querySelector(".error-message");
+    errorMessage.textContent = "";
+  }
+
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
     
     // Add animations to elements on scroll
     const fadeElements = document.querySelectorAll('.fade-in');

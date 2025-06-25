@@ -1336,7 +1336,6 @@ body {
     border-top: 1px solid var(--border-color);
     color: var(--text-light);
 }
-
 /* Page Header */
 .page-header {
     padding: 120px 0 var(--spacing-2xl);
